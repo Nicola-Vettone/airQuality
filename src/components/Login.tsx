@@ -4,7 +4,7 @@ const Login: React.FC = () => {
   return (
     <div className="login-container">
       <div className="image-section">
-        <img src={imgLogin} alt="Login" />
+        <img src={imgLogin}  alt="Login" />
       </div>
       <div className="form-section">
         <h2>Login</h2>
