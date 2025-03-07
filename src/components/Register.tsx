@@ -1,4 +1,5 @@
 import  { useState } from 'react';
+import imgRegister from "../assets/img.svg";
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -24,8 +25,7 @@ const Register: React.FC = () => {
   return (
     <div className="register-container">
       <div className="image-container">
-        <img src="img.svg" alt="Register" />
-      </div>
+      <img className="imgRegister" src={imgRegister} alt="Login" />      </div>
       <div className="form-container">
         <h2>Register</h2>
         <form onSubmit={handleSubmit}>

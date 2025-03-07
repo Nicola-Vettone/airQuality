@@ -53,16 +53,8 @@ button:hover {
   height: 100vh;
 }
 
-.image-container {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.image-container img {
-  max-width: 100%;
-  height: auto;
+.imgRegister {
+width:80%;
 }
 
 .form-container {
