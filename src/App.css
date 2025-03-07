@@ -3,16 +3,9 @@
   height: 100vh;
 }
 
-.image-section {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f0f0;
-  width: 1000px !important;
-  height: 600px !important;
+.imgLogin {
+  width: 80%;
 }
-
 
 .form-section {
   flex: 1;

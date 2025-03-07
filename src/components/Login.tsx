@@ -1,10 +1,10 @@
-import imgLogin from '../assets/img.svg'
+import imgLogin from "../assets/img.svg";
 
 const Login: React.FC = () => {
   return (
     <div className="login-container">
       <div className="image-section">
-        <img src={imgLogin}  alt="Login" />
+        <img className="imgLogin" src={imgLogin} alt="Login" />
       </div>
       <div className="form-section">
         <h2>Login</h2>
