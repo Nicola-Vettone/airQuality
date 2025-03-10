@@ -15,7 +15,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/Password_dimenticata" element={<PassDim />} />
           <Route path="/mqtt" element={<MQTTClient />} />
-
           <Route
             path="*"
             element={

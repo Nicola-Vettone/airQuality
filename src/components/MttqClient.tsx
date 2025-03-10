@@ -10,22 +10,24 @@ type MQTTMessageItem = {
   noise: string;
 };
 
-type MQTTMessage = MQTTMessageItem[];
+// Cambiato per utilizzare un oggetto invece di un array
+type MQTTMessages = Record<string, MQTTMessageItem>;
 
 const topic = "Synapsy/AirQuality/+"; //inserisco il topic in una variabile
 
 const MQTTClient: React.FC = () => {
-  // Stato per memorizzare l'ultimo messaggio ricevuto
-  const [messages, setMessages] = useState<MQTTMessage>([]);
+  // Stato per memorizzare l'ultimo messaggio ricevuto per ogni dispositivo
+  const [messages, setMessages] = useState<MQTTMessages>({});
 
   let client: MqttClient | null = null; // Variabile per il client MQTT
 
   useEffect(() => {
     const brokerUrl: string = "wss://nexustlc.ddns.net:443/mqtt"; // URL del broker MQTT (WebSocket Secure)
+
     // Connessione al broker MQTT
     // eslint-disable-next-line react-hooks/exhaustive-deps
     client = mqtt.connect(brokerUrl, {
-      //Credenziali per la mqtt client,senza non possono essere visualizzati i dati
+      //Credenziali per la mqtt client, senza non possono essere visualizzati i dati
       username: "ProgettoAirQualityClient",
       password: "1d87914de3fdd3b778a45ce3fdff3c6c",
     });
@@ -51,10 +53,16 @@ const MQTTClient: React.FC = () => {
       const topicParts = topic.split("/");
       const deviceId = topicParts[2];
       console.log(`Messaggio ricevuto su ${deviceId}:`, message.toString());
+
       try {
-        //convertire il messaggio da stringa JSON a oggetto TypeScript
+        // Convertire il messaggio da stringa JSON a oggetto TypeScript
         const parsedMessage: MQTTMessageItem = JSON.parse(message.toString());
-        setMessages((prev) => [...prev, parsedMessage]); // Aggiungiamo il nuovo messaggio all'array
+
+        // Sovrascriviamo il messaggio precedente per questo dispositivo
+        setMessages((prev) => ({
+          ...prev,
+          [deviceId]: parsedMessage,
+        }));
       } catch (error) {
         console.error("Errore nel parsing del messaggio:", error);
       }
@@ -72,30 +80,37 @@ const MQTTClient: React.FC = () => {
   return (
     <div>
       <h2>MQTT Client</h2>
-      {messages.length > 0 ? (
-        <div>
-          {messages.map((msg, deviceId) => (
-            <div key={deviceId}>
-              <p>
-                <strong>Dispositivo {deviceId}</strong>
-              </p>
-              <p>
-                <strong>Temperatura:</strong> {msg.temperature}
-              </p>
-              <p>
-                <strong>Umidità:</strong> {msg.humidity}
-              </p>
-              <p>
-                <strong>PM10:</strong> {msg.pm10}
-              </p>
-              <p>
-                <strong>PM2.5:</strong> {msg.pm2_5}
-              </p>
-              <p>
-                <strong>Noise:</strong> {msg.noise}
-              </p>
-            </div>
-          ))}
+      {Object.keys(messages).length > 0 ? (
+        <div className="d-flex">
+          {Object.entries(messages).map(
+            (
+              [deviceId, msg],
+              index //converto l'oggetto in un array con entries per poi mapparlo
+            ) => (
+              <div key={deviceId}>
+                <p>
+                  <strong>
+                    Dispositivo {index + 1} ({deviceId})
+                  </strong>
+                </p>
+                <p>
+                  <strong>Temperatura:</strong> {msg.temperature}
+                </p>
+                <p>
+                  <strong>Umidità:</strong> {msg.humidity}
+                </p>
+                <p>
+                  <strong>PM10:</strong> {msg.pm10}
+                </p>
+                <p>
+                  <strong>PM2.5:</strong> {msg.pm2_5}
+                </p>
+                <p>
+                  <strong>Noise:</strong> {msg.noise}
+                </p>
+              </div>
+            )
+          )}
         </div>
       ) : (
         <p>In attesa di messaggi...</p>
