@@ -11,3 +11,9 @@
 .buttonSalta {
   background-color: #6a528c;
 }
+.backImg {
+  background-image: url("./assets/img.svg");
+  background-size: contain;
+  background-position: left;
+  background-repeat: no-repeat;
+}
