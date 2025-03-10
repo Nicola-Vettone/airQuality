@@ -88,7 +88,7 @@ const MQTTClient: React.FC = () => {
             //converto l'oggetto in un array con entries per poi mapparlo
             <div key={deviceId}>
               <p>
-                <strong>Dispositivo ({deviceId})</strong>
+                <strong>{deviceId}</strong>
               </p>
               <p>
                 <strong>Temperatura:</strong> {msg.temperature}

@@ -13,7 +13,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <Container fluid className=" vh-100 d-flex align-items-center justify-content-end pe-5  ">
+    <Container fluid className=" vh-100 d-flex align-items-center justify-content-end pe-5 backImg  ">
       {/* Sezione Immagine */}
       <Col md={6} className="login-image">
         {/*  <div className="w-75">
