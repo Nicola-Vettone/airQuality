@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { Container, Col, Form, Button, InputGroup } from "react-bootstrap";
+import { Container, Col, Form, Button } from "react-bootstrap";
 
-const Login: React.FC = () => {
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+const PassDim: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    console.log("Username:", username);
-    console.log("Password:", password);
+    console.log("email:", email);
   };
 
   return (
@@ -22,49 +20,29 @@ const Login: React.FC = () => {
 
       {/* Sezione Form */}
       <Col md={6} className="w-25 ">
-        <h2>
-          Ciao! <br /> Bentornato!
-        </h2>
+        <h2>Password dimenticata?</h2>
+        <p className="text-secondary fontSize">Inserisci l’email e riceverai istruzioni per recuperare la password</p>
 
         <Form onSubmit={handleSubmit} className="mt-4 ">
-          <Form.Group controlId="username">
-            <Form.Label>Nome Utente</Form.Label>
+          <Form.Group controlId="email">
+            <Form.Label>Email</Form.Label>
             <Form.Control
               className="rounded-pill"
               type="text"
-              placeholder="Inserisci il nome utente"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
 
-          <Form.Group controlId="password" className="mt-3 ">
-            <Form.Label>Password</Form.Label>
-            <InputGroup>
-              <Form.Control
-                className="rounded-pill"
-                placeholder="Inserisci la password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </InputGroup>
-          </Form.Group>
-
-          <div className="d-flex justify-content-between mt-2">
-            <a href="#" className="text-color ">
-              Hai dimenticato la password?
-            </a>
-          </div>
-
-          <Button variant="success" type="submit" className="w-100 mt-3 login-button rounded-pill">
-            Login
+          <Button variant="success" type="submit" className="w-100 mt-3  rounded-pill">
+            Invia email
           </Button>
         </Form>
 
-        <p className="text-center mt-3">
-          Non hai l’account?
+        <p className="text-center mt-3 text-secondary">
+          Non hai ricevuto l'email?
           <a href="#" className="text-color">
-            Iscriviti ora
+            Invia una nuova email
           </a>
         </p>
       </Col>
@@ -72,4 +50,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default PassDim;

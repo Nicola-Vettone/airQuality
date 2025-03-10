@@ -4,6 +4,8 @@ import { Container, Col, Form, Button, InputGroup } from "react-bootstrap";
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  /*   const [confermaPass, setConfermaPass] = useState<string>(""); */
+  const [email, setEmail] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -39,34 +41,45 @@ const Login: React.FC = () => {
           </Form.Group>
 
           <Form.Group controlId="password" className="mt-3 ">
+            <Form.Label>Email</Form.Label>
+            <InputGroup>
+              <Form.Control
+                className="rounded-pill"
+                type="email"
+                placeholder="Inserisci la tua email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </InputGroup>
+          </Form.Group>
+          <Form.Group controlId="password" className="mt-3 ">
             <Form.Label>Password</Form.Label>
             <InputGroup>
               <Form.Control
                 className="rounded-pill"
+                type="password"
                 placeholder="Inserisci la password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </InputGroup>
           </Form.Group>
+          <Form.Group controlId="password" className="mt-3 ">
+            <Form.Label>Conferma password</Form.Label>
+            <InputGroup>
+              <Form.Control className="rounded-pill" type="password" placeholder="Conferma password" />
+            </InputGroup>
+          </Form.Group>
 
-          <div className="d-flex justify-content-between mt-2">
-            <a href="#" className="text-color ">
-              Hai dimenticato la password?
-            </a>
-          </div>
-
-          <Button variant="success" type="submit" className="w-100 mt-3 login-button rounded-pill">
-            Login
+          <Button variant="success" type="submit" className="w-100 mt-3  rounded-pill">
+            Conferma
           </Button>
         </Form>
-
-        <p className="text-center mt-3">
-          Non hai l’account?
-          <a href="#" className="text-color">
-            Iscriviti ora
-          </a>
-        </p>
+        <div className="d-flex justify-content-end">
+          <Button variant="success" type="submit" className=" mt-3 buttonSalta rounded-pill px-5">
+            Salta
+          </Button>
+        </div>
       </Col>
     </Container>
   );

@@ -50,13 +50,13 @@ const Login: React.FC = () => {
             </InputGroup>
           </Form.Group>
 
-          <div className="d-flex justify-content-between mt-2">
+          <div className="d-flex justify-content-end mt-2">
             <a href="#" className="text-color ">
               Hai dimenticato la password?
             </a>
           </div>
 
-          <Button variant="success" type="submit" className="w-100 mt-3 login-button rounded-pill">
+          <Button variant="success" type="submit" className="w-100 mt-3  rounded-pill">
             Login
           </Button>
         </Form>
