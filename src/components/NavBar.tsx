@@ -23,8 +23,8 @@ function NavBar() {
             <Nav.Link href="#link">3D models</Nav.Link>
             <Nav.Link href="#link">Air Quality</Nav.Link>
             <div className="d-flex ">
-              <Nav.Link href="#link">Login</Nav.Link>
-              <Nav.Link href="#link">Sign In</Nav.Link>
+              <Nav.Link href="/">Login</Nav.Link>
+              <Nav.Link href="/register">Sign In</Nav.Link>
             </div>
           </Nav>
         </Navbar.Collapse>

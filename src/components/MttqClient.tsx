@@ -83,7 +83,7 @@ const MQTTClient: React.FC = () => {
   }, []); // si esegue solo una volta
 
   return (
-    <Container fluid className="backGroundColor">
+    <Container fluid className="backGroundColor ">
       <NavBar />
       <div className="mt-4">
         <Table>

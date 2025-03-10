@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Col, Form, Button, InputGroup } from "react-bootstrap";
+import { Container, Col, Form, InputGroup } from "react-bootstrap";
 import { Link } from "react-router";
 
 const Login: React.FC = () => {
@@ -32,6 +32,7 @@ const Login: React.FC = () => {
             <Form.Label>Nome Utente</Form.Label>
             <Form.Control
               className="rounded-pill"
+              required
               type="text"
               placeholder="Inserisci il nome utente"
               value={username}
@@ -44,6 +45,7 @@ const Login: React.FC = () => {
             <InputGroup>
               <Form.Control
                 className="rounded-pill"
+                required
                 placeholder="Inserisci la password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -57,9 +59,9 @@ const Login: React.FC = () => {
             </Link>
           </div>
 
-          <Button variant="success" type="submit" className="w-100 mt-3 colorButton  rounded-pill">
+          <Link to={"/mqtt"} type="submit" className="w-100 mt-3 colorButton text-white rounded-pill">
             Login
-          </Button>
+          </Link>
         </Form>
 
         <p className="text-center mt-3">

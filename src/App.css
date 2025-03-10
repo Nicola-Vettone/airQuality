@@ -24,6 +24,9 @@
 .colorButton {
   background-color: #d6f1dc;
   border: none;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px;
   box-shadow: inset 2px 10px 5px -9px rgba(0, 0, 0, 0.57);
 }
 
@@ -39,5 +42,8 @@
   text-align: center;
 }
 .backGroundColor {
+  background-color: #d6f1dc;
+}
+html {
   background-color: #d6f1dc;
 }
