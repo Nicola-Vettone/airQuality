@@ -3,11 +3,13 @@ import imgLogin from "../assets/img.svg";
 const Login: React.FC = () => {
   return (
     <div className="login-container">
-      
-        <img className="imgLogin" src={imgLogin} alt="Login" />
-     
+      <img className="imgLogin" src={imgLogin} alt="Login" />
+
       <div className="form-section">
-        <h2>Login</h2>
+        <div>
+          <h2>Ciao!</h2>
+          <h2>Bentornato!</h2>
+        </div>
         <form>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -17,7 +19,7 @@ const Login: React.FC = () => {
             <label htmlFor="password">Password</label>
             <input type="password" id="password" name="password" required />
           </div>
-          <p>hai dimenticato la password?</p>
+          <p>Hai dimenticato la password?</p>
           <button type="submit">Login</button>
         </form>
       </div>

@@ -1,17 +1,9 @@
+import "./App.css";
 
-
-
-import './App.css'
-
-import Login from "./components/Login"
-
+import MQTTClient from "./components/MttqClient";
 
 function App() {
-  return (
-  <Login/>
-
-
-  )
+  return <MQTTClient />;
 }
 
-export default App
+export default App;
