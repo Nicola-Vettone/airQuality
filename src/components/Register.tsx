@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Container, Col, Form, Button, InputGroup } from "react-bootstrap";
+import { Link } from "react-router";
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>();
   const [confermaPass, setConfermaPass] = useState<string>();
@@ -87,7 +88,9 @@ const Login: React.FC = () => {
         </Form>
         <div className="d-flex justify-content-end">
           <button type="submit" className="text-white mt-3 buttonSalta rounded-pill px-5 py-1">
+          <Link to="/3Dmodels" className="text-color">
             Salta
+          </Link>
           </button>
         </div>
       </Col>
@@ -95,4 +98,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;
