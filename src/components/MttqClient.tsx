@@ -82,35 +82,29 @@ const MQTTClient: React.FC = () => {
       <h2>MQTT Client</h2>
       {Object.keys(messages).length > 0 ? (
         <div className="d-flex">
-          {Object.entries(messages).map(
-            (
-              [deviceId, msg],
-              index //converto l'oggetto in un array con entries per poi mapparlo
-            ) => (
-              <div key={deviceId}>
-                <p>
-                  <strong>
-                    Dispositivo {index + 1} ({deviceId})
-                  </strong>
-                </p>
-                <p>
-                  <strong>Temperatura:</strong> {msg.temperature}
-                </p>
-                <p>
-                  <strong>Umidità:</strong> {msg.humidity}
-                </p>
-                <p>
-                  <strong>PM10:</strong> {msg.pm10}
-                </p>
-                <p>
-                  <strong>PM2.5:</strong> {msg.pm2_5}
-                </p>
-                <p>
-                  <strong>Noise:</strong> {msg.noise}
-                </p>
-              </div>
-            )
-          )}
+          {Object.entries(messages).map(([deviceId, msg]) => (
+            //converto l'oggetto in un array con entries per poi mapparlo
+            <div key={deviceId}>
+              <p>
+                <strong>Dispositivo ({deviceId})</strong>
+              </p>
+              <p>
+                <strong>Temperatura:</strong> {msg.temperature}
+              </p>
+              <p>
+                <strong>Umidità:</strong> {msg.humidity}
+              </p>
+              <p>
+                <strong>PM10:</strong> {msg.pm10}
+              </p>
+              <p>
+                <strong>PM2.5:</strong> {msg.pm2_5}
+              </p>
+              <p>
+                <strong>Noise:</strong> {msg.noise}
+              </p>
+            </div>
+          ))}
         </div>
       ) : (
         <p>In attesa di messaggi...</p>
