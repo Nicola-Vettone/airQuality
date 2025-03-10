@@ -17,11 +17,15 @@ function NavBar() {
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mx-auto">
+          <Nav className="mx-auto d-flex ">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Tools</Nav.Link>
             <Nav.Link href="#link">3D models</Nav.Link>
             <Nav.Link href="#link">Air Quality</Nav.Link>
+            <div className="d-flex ">
+              <Nav.Link href="#link">Login</Nav.Link>
+              <Nav.Link href="#link">Sign In</Nav.Link>
+            </div>
           </Nav>
         </Navbar.Collapse>
       </Container>
