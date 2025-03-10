@@ -4,6 +4,7 @@ import mqtt, { MqttClient } from "mqtt";
 import { oggi } from "../configurations/timeConfig";
 import { Container, Table } from "react-bootstrap";
 import NavBar from "./NavBar";
+import MapComponent from "./Maps";
 
 // Tipo TypeScript per i dati che riceveremo dai messaggi MQTT
 type MQTTMessageItem = {
@@ -113,6 +114,7 @@ const MQTTClient: React.FC = () => {
           </tbody>
         </Table>
       </div>
+      <MapComponent />
     </Container>
   );
 };
