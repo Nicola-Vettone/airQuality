@@ -88,7 +88,7 @@ const Register: React.FC = () => {
         </Form>
         <div className="d-flex justify-content-end">
           <button type="submit" className="text-white mt-3 buttonSalta rounded-pill px-5 py-1">
-          <Link to="/3Dmodels" className="text-color">
+          <Link to="/tools" className="text-color">
             Salta
           </Link>
           </button>
