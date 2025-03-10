@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap');
+
+
 .formSection {
   width: 200px;
 }
@@ -11,32 +15,16 @@
 .buttonSalta {
   background-color: #6a528c;
 }
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  padding: 1rem;
-}
-
-.navbar-brand a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.5rem;
-}
 
 .navbar-links {
   list-style: none;
   display: flex;
   gap: 1rem;
-}
+ 
+    font-family: "Baloo Bhaijaan 2", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
 
-.navbar-links li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1rem;
-}
-
-.navbar-links li a:hover {
-  text-decoration: underline;
-}
+  }

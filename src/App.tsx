@@ -4,10 +4,12 @@ import Login from "./components/Login";
 import PassDim from "./components/Password_dim";
 import Register from "./components/Register";
 import { Alert } from "react-bootstrap";
+import Navbar from "./components/NavBar";
 
 function App() {
   return (
     <BrowserRouter>
+    <Navbar/>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
