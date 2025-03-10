@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import mqtt, { MqttClient } from "mqtt";
 
 import { oggi } from "../configurations/timeConfig";
+import { Container, Table } from "react-bootstrap";
+import NavBar from "./NavBar";
 
 // Tipo TypeScript per i dati che riceveremo dai messaggi MQTT
 type MQTTMessageItem = {
@@ -80,41 +82,38 @@ const MQTTClient: React.FC = () => {
   }, []); // si esegue solo una volta
 
   return (
-    <div>
-      <h2>MQTT Client</h2>
-      {Object.keys(messages).length > 0 ? (
-        <div className="d-flex">
-          {Object.entries(messages).map(([deviceId, msg]) => (
-            //converto l'oggetto in un array con entries per poi mapparlo
-            <div key={deviceId}>
-              <p>
-                <strong>{deviceId}</strong>
-              </p>
-              <p>
-                <strong>Temperatura:</strong> {msg.temperature}
-              </p>
-              <p>
-                <strong>Umidità:</strong> {msg.humidity}
-              </p>
-              <p>
-                <strong>PM10:</strong> {msg.pm10}
-              </p>
-              <p>
-                <strong>PM2.5:</strong> {msg.pm2_5}
-              </p>
-              <p>
-                <strong>Noise:</strong> {msg.noise}
-              </p>
-              <p>
-                <strong>Data</strong> {oggi}
-              </p>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>In attesa di messaggi...</p>
-      )}
-    </div>
+    <Container fluid className="backGroundColor">
+      <NavBar />
+      <div className="mt-4">
+        <Table>
+          <thead>
+            <tr className="text-center">
+              <th>#ID</th>
+              <th>Status</th>
+              <th>Temperatura</th>
+              <th>Umidità</th>
+              <th>Installed On</th>
+              <th>Last Transmission</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(messages).map(
+              //converto l'oggetto in array per poi mapparlo
+              ([deviceId, msg]) => (
+                <tr className="text-center" key={deviceId}>
+                  <td>{deviceId}</td>
+                  <td>🟢</td>
+                  <td>{msg.temperature}°</td>
+                  <td>{msg.humidity}%</td>
+                  <td>17/12/24</td>
+                  <td>{oggi}</td>
+                </tr>
+              )
+            )}
+          </tbody>
+        </Table>
+      </div>
+    </Container>
   );
 };
 
