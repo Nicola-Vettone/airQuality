@@ -25,7 +25,7 @@ const Login: React.FC = () => {
       {/* Sezione Form */}
       <Col md={6} className="w-25 ">
         <h2>
-          Ciao! <br /> Bentornato!
+          Ciao! <br /> Bentornato,registrati!
         </h2>
 
         <Form onSubmit={handleSubmit} className="mt-4 ">
@@ -34,7 +34,6 @@ const Login: React.FC = () => {
             <Form.Control
               className="rounded-pill"
               type="text"
-              placeholder="Inserisci il nome utente"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -43,13 +42,7 @@ const Login: React.FC = () => {
           <Form.Group controlId="password" className="mt-3 ">
             <Form.Label>Email</Form.Label>
             <InputGroup>
-              <Form.Control
-                className="rounded-pill"
-                type="email"
-                placeholder="Inserisci la tua email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <Form.Control className="rounded-pill" value={email} onChange={(e) => setEmail(e.target.value)} />
             </InputGroup>
           </Form.Group>
           <Form.Group controlId="password" className="mt-3 ">
@@ -58,7 +51,6 @@ const Login: React.FC = () => {
               <Form.Control
                 className="rounded-pill"
                 type="password"
-                placeholder="Inserisci la password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -67,7 +59,7 @@ const Login: React.FC = () => {
           <Form.Group controlId="password" className="mt-3 ">
             <Form.Label>Conferma password</Form.Label>
             <InputGroup>
-              <Form.Control className="rounded-pill" type="password" placeholder="Conferma password" />
+              <Form.Control className="rounded-pill" type="password" />
             </InputGroup>
           </Form.Group>
 
