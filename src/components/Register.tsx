@@ -3,8 +3,8 @@ import { Container, Col, Form, Button, InputGroup } from "react-bootstrap";
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  /*   const [confermaPass, setConfermaPass] = useState<string>(""); */
+  const [password, setPassword] = useState<string>();
+  const [confermaPass, setConfermaPass] = useState<string>();
   const [email, setEmail] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -35,6 +35,7 @@ const Login: React.FC = () => {
               className="rounded-pill"
               type="text"
               value={username}
+              required
               onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
@@ -52,6 +53,7 @@ const Login: React.FC = () => {
                 className="rounded-pill"
                 type="password"
                 value={password}
+                required
                 onChange={(e) => setPassword(e.target.value)}
               />
             </InputGroup>
@@ -59,13 +61,29 @@ const Login: React.FC = () => {
           <Form.Group controlId="password" className="mt-3 ">
             <Form.Label>Conferma password</Form.Label>
             <InputGroup>
-              <Form.Control className="rounded-pill" type="password" />
+              <Form.Control
+                className="rounded-pill"
+                type="password"
+                value={confermaPass}
+                required
+                onChange={(e) => setConfermaPass(e.target.value)}
+              />
             </InputGroup>
           </Form.Group>
 
-          <Button variant="success" type="submit" className="w-100 mt-3  rounded-pill">
-            Conferma
-          </Button>
+          {password === confermaPass ? (
+            <Button variant="success" type="submit" className="w-100 mt-3  rounded-pill">
+              Conferma
+            </Button>
+          ) : (
+            <Button
+              onClick={() => alert("Le password non coincidono")}
+              variant="success"
+              className="w-100 mt-3  rounded-pill differentPasswords"
+            >
+              Conferma
+            </Button>
+          )}
         </Form>
         <div className="d-flex justify-content-end">
           <Button variant="success" type="submit" className=" mt-3 buttonSalta rounded-pill px-5">

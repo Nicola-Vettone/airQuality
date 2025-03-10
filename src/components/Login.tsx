@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Container, Col, Form, Button, InputGroup } from "react-bootstrap";
+import { Link } from "react-router";
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>("");
@@ -51,9 +52,9 @@ const Login: React.FC = () => {
           </Form.Group>
 
           <div className="d-flex justify-content-end mt-2">
-            <a href="#" className="text-color ">
+            <Link to="/Password_dimenticata" className="text-color ">
               Hai dimenticato la password?
-            </a>
+            </Link>
           </div>
 
           <Button variant="success" type="submit" className="w-100 mt-3  rounded-pill">
@@ -63,9 +64,9 @@ const Login: React.FC = () => {
 
         <p className="text-center mt-3">
           Non hai l’account?
-          <a href="#" className="text-color">
+          <Link to="/register" className="text-color">
             Iscriviti ora
-          </a>
+          </Link>
         </p>
       </Col>
     </Container>
