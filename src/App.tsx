@@ -4,16 +4,18 @@ import Login from "./components/Login";
 import PassDim from "./components/Password_dim";
 import Register from "./components/Register";
 import { Alert, Container } from "react-bootstrap";
+import MQTTClient from "./components/MttqClient";
 
 function App() {
   return (
     <Container fluid className="backImg">
       <BrowserRouter>
-    
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/Password_dimenticata" element={<PassDim />} />
+          <Route path="/mqtt" element={<MQTTClient />} />
+
           <Route
             path="*"
             element={
