@@ -72,7 +72,7 @@ const Login: React.FC = () => {
           </Form.Group>
 
           {password === confermaPass ? (
-            <Button variant="success" type="submit" className="w-100 mt-3  rounded-pill">
+            <Button variant="success" type="submit" className="w-100 mt-3 colorButton  rounded-pill">
               Conferma
             </Button>
           ) : (
@@ -86,9 +86,9 @@ const Login: React.FC = () => {
           )}
         </Form>
         <div className="d-flex justify-content-end">
-          <Button variant="success" type="submit" className=" mt-3 buttonSalta rounded-pill px-5">
+          <button type="submit" className="text-white mt-3 buttonSalta rounded-pill px-5 py-1">
             Salta
-          </Button>
+          </button>
         </div>
       </Col>
     </Container>

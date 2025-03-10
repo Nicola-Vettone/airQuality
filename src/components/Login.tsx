@@ -57,7 +57,7 @@ const Login: React.FC = () => {
             </Link>
           </div>
 
-          <Button variant="success" type="submit" className="w-100 mt-3  rounded-pill">
+          <Button variant="success" type="submit" className="w-100 mt-3 colorButton  rounded-pill">
             Login
           </Button>
         </Form>

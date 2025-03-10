@@ -10,10 +10,17 @@
 }
 .buttonSalta {
   background-color: #6a528c;
+  border: none;
+  box-shadow: inset 2px 10px 5px -9px rgba(0, 0, 0, 0.57);
 }
+
 .backImg {
   background-image: url("./assets/img.svg");
   background-size: contain;
-  background-position: left;
   background-repeat: no-repeat;
+}
+.colorButton {
+  background-color: #d6f1dc;
+  border: none;
+  box-shadow: inset 2px 10px 5px -9px rgba(0, 0, 0, 0.57);
 }

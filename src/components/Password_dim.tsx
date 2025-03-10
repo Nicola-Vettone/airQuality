@@ -34,7 +34,7 @@ const PassDim: React.FC = () => {
             />
           </Form.Group>
 
-          <Button variant="success" type="submit" className="w-100 mt-3  rounded-pill">
+          <Button variant="success" type="submit" className="w-100 mt-3 colorButton  rounded-pill">
             Invia email
           </Button>
         </Form>
