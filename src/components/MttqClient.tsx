@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import mqtt, { MqttClient } from "mqtt";
 
+import { oggi } from "../configurations/timeConfig";
+
 // Tipo TypeScript per i dati che riceveremo dai messaggi MQTT
 type MQTTMessageItem = {
   temperature: string;
@@ -10,7 +12,7 @@ type MQTTMessageItem = {
   noise: string;
 };
 
-// Cambiato per utilizzare un oggetto invece di un array
+// utilizzo un oggetto invece di un array
 type MQTTMessages = Record<string, MQTTMessageItem>;
 
 const topic = "Synapsy/AirQuality/+"; //inserisco il topic in una variabile
@@ -102,6 +104,9 @@ const MQTTClient: React.FC = () => {
               </p>
               <p>
                 <strong>Noise:</strong> {msg.noise}
+              </p>
+              <p>
+                <strong>Data</strong> {oggi}
               </p>
             </div>
           ))}
