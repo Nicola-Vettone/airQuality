@@ -61,8 +61,8 @@ html {
   color: #503279;
 }
 .buttonFilter {
-  background-color: white;
-  border: none;
+  background-color: transparent;
+  border: 1px solid white;
   color: #503279;
 }
 .module3d-container {

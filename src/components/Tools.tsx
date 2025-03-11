@@ -11,8 +11,8 @@ function Tools() {
       </Button>
 
       <InputGroup className="searchBar">
-        <Form.Control className="rounded-pill py-2" placeholder="Search..." />
-        <InputGroup.Text className="bg-transparent border-0">
+        <Form.Control className="rounded-pill py-2 bg-transparent" placeholder="Search..." />
+        <InputGroup.Text className=" bg-transparent border-0">
           <Search style={{ position: "absolute", top: "10px", left: "94%" }} size={20} />
         </InputGroup.Text>
       </InputGroup>
