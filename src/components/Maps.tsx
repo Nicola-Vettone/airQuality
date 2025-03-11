@@ -3,6 +3,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
 const position: [number, number] = [41.9028, 12.4964];
+const position1: [number, number] = [45.4654219, 9.1859243];
 
 const customIcon = new L.Icon({
   iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
@@ -19,6 +20,9 @@ const MapComponent: React.FC = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       <Marker position={position} icon={customIcon}>
+        <Popup>Roma, Italia</Popup>
+      </Marker>
+      <Marker position={position1} icon={customIcon}>
         <Popup>Roma, Italia</Popup>
       </Marker>
     </MapContainer>

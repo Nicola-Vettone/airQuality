@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Container, Col, Form, InputGroup } from "react-bootstrap";
+import { Container, Col, Form, InputGroup, Button } from "react-bootstrap";
 import { Link } from "react-router";
 
 const Login: React.FC = () => {
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [username, setUsername] = useState<string>();
+  const [password, setPassword] = useState<string>();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -59,9 +59,20 @@ const Login: React.FC = () => {
             </Link>
           </div>
 
-          <Link to={"/mqtt"} type="submit" className="w-100 mt-3 colorButton text-white rounded-pill">
-            Login
-          </Link>
+          {username && password ? (
+            <Link to={"/mqtt"} type="submit" className="w-100 mt-3 colorButton text-white rounded-pill">
+              Login
+            </Link>
+          ) : (
+            <Button
+              onClick={() => alert("Effettua il login o iscriviti!")}
+              variant="success"
+              type="submit"
+              className="w-100 mt-3 colorButton  rounded-pill"
+            >
+              Login
+            </Button>
+          )}
         </Form>
 
         <p className="text-center mt-3">

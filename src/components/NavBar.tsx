@@ -1,3 +1,4 @@
+import { List } from "react-bootstrap-icons";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -5,29 +6,37 @@ import Navbar from "react-bootstrap/Navbar";
 function NavBar() {
   return (
     <Navbar expand="lg" className="navbar-links">
-      <Container>
+      <Container className="d-flex  align-items-center">
         <Navbar.Brand href="#icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path
-              fill-rule="evenodd"
-              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
-            />
-          </svg>
+          <List size={30} />
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mx-auto d-flex ">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Tools</Nav.Link>
-            <Nav.Link href="#link">3D models</Nav.Link>
-            <Nav.Link href="#link">Air Quality</Nav.Link>
-            <div className="d-flex ">
-              <Nav.Link href="/">Login</Nav.Link>
-              <Nav.Link href="/register">Sign In</Nav.Link>
-            </div>
+        <Navbar.Collapse id="basic-navbar-nav" className="d-flex flex-grow-1 justify-content-center">
+          <Nav className="d-flex gap-3 ">
+            <Nav.Link className="fontNavbar" href="#home">
+              Home
+            </Nav.Link>
+            <Nav.Link className="fontNavbar" href="#link">
+              Tools
+            </Nav.Link>
+            <Nav.Link className="fontNavbar" href="/3Dmodels">
+              3D models
+            </Nav.Link>
+            <Nav.Link className="fontNavbar" href="#link">
+              Air Quality
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
+
+        <div className="d-flex align-items-center gap-3">
+          <Nav.Link className="LoginNavBar" href="/">
+            Login
+          </Nav.Link>
+          <Nav.Link className="border border-black rounded-pill px-4 LoginNavBar" href="/register">
+            Sign In
+          </Nav.Link>
+        </div>
       </Container>
     </Navbar>
   );

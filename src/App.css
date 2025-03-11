@@ -30,7 +30,7 @@
   box-shadow: inset 2px 10px 5px -9px rgba(0, 0, 0, 0.57);
 }
 
-.navbar-links {
+.fontNavbar {
   list-style: none;
   display: flex;
   gap: 1rem;
@@ -41,9 +41,27 @@
   font-weight: bold;
   text-align: center;
 }
+.LoginNavBar {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+
+  font-family: "Baloo Bhaijaan 2", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 24px;
+  text-align: center;
+}
 .backGroundColor {
   background-color: #d6f1dc;
 }
 html {
   background-color: #d6f1dc;
+}
+.nav-link:hover {
+  color: #503279;
+}
+.buttonFilter {
+  background-color: white;
+  border: none;
+  color: #503279;
 }
