@@ -60,8 +60,13 @@ html {
 .nav-link:hover {
   color: #503279;
 }
-.buttonFilter {
-  background-color: transparent;
+.buttonSearch {
+  background-color: rgba(255, 255, 255, 0.423);
+  border: 1px solid white;
+  color: #503279;
+}
+.searchBar {
+  background-color: rgba(255, 255, 255, 0.423);
   border: 1px solid white;
   color: #503279;
 }
