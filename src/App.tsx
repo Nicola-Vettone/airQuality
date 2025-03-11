@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import { Alert } from "react-bootstrap";
 import MQTTClient from "./components/MttqClient";
 import Module3D from "./components/3D_Models";
+import GraficiMqtt from "./components/Grafici";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/Password_dimenticata" element={<PassDim />} />
         <Route path="/mqtt" element={<MQTTClient />} />
         <Route path="/3Dmodels" element={<Module3D />} />
+        <Route path="/grafici" element={<GraficiMqtt />} />
         <Route
           path="*"
           element={

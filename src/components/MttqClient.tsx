@@ -7,6 +7,7 @@ moment.locale("it");
 import { Container, Table } from "react-bootstrap";
 import NavBar from "./NavBar";
 import MapComponent from "./Maps";
+import { useNavigate } from "react-router";
 
 // Tipo TypeScript per i dati che riceveremo dai messaggi MQTT
 type MQTTMessageItem = {
@@ -24,7 +25,7 @@ const topic = "Synapsy/AirQuality/+"; //inserisco il topic in una variabile
 
 const MQTTClient: React.FC = () => {
   // Stato per memorizzare l'ultimo messaggio ricevuto per ogni dispositivo
-
+  const navigate = useNavigate();
   const [oggi, setOggi] = useState(() => {
     const storedOggi = localStorage.getItem("oggi");
     return storedOggi ? storedOggi : moment().calendar();
@@ -103,6 +104,12 @@ const MQTTClient: React.FC = () => {
     };
   }, []); // si esegue solo una volta
 
+  // Funzione per gestire il click sull'ID del dispositivo
+  const handleDeviceClick = (deviceId: string) => {
+    // Naviga alla pagina dei grafici con il deviceId come parametro URL
+    navigate(`/grafici?deviceId=${deviceId}`);
+  };
+
   return (
     <Container fluid className="backGroundColor ">
       <NavBar />
@@ -123,7 +130,7 @@ const MQTTClient: React.FC = () => {
               //converto l'oggetto in array per poi mapparlo
               ([deviceId, msg]) => (
                 <tr className="text-center" key={deviceId}>
-                  <td>{deviceId}</td>
+                  <td onClick={() => handleDeviceClick(deviceId)}>{deviceId}</td>
                   <td>🟢</td>
                   <td>{msg.temperature}°</td>
                   <td>{msg.humidity}%</td>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Container, Col, Form, Button } from "react-bootstrap";
+import { Unlock } from "react-bootstrap-icons";
 
 const PassDim: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -20,7 +21,9 @@ const PassDim: React.FC = () => {
 
       {/* Sezione Form */}
       <Col md={6} className="w-25 ">
-        <h2>Password dimenticata?</h2>
+        <h2>
+          Password dimenticata? <Unlock className="iconColor " />
+        </h2>
         <p className="text-secondary fontSize">Inserisci l’email e riceverai istruzioni per recuperare la password</p>
 
         <Form onSubmit={handleSubmit} className="mt-4 ">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Container, Col, Form, Button, InputGroup } from "react-bootstrap";
-import { Eye } from "react-bootstrap-icons";
+import { EmojiSmile, Eye } from "react-bootstrap-icons";
 import { Link } from "react-router";
 
 const Register: React.FC = () => {
@@ -27,7 +27,7 @@ const Register: React.FC = () => {
       {/* Sezione Form */}
       <Col md={6} className="w-25 ">
         <h2>
-          Ciao! <br /> Bentornato,registrati!
+          Ciao! <br /> Bentornato,registrati! <EmojiSmile className="iconColor" />
         </h2>
 
         <Form onSubmit={handleSubmit} className="mt-4 ">
