@@ -131,7 +131,7 @@ const GraficiMqtt: React.FC = () => {
       ) : (
         // Mostra un messaggio se non c'è un deviceId
         <div style={{ textAlign: "center", padding: "20px" }}>
-          <p>Nessun dispositivo specificato. Aggiungi il parametro '?deviceId=XXX' all'URL.</p>
+          <p>Nessun dispositivo selezionato!</p>
         </div>
       )}
     </div>

@@ -23,7 +23,7 @@ const MapComponent: React.FC = () => {
         <Popup>Roma, Italia</Popup>
       </Marker>
       <Marker position={position1} icon={customIcon}>
-        <Popup>Roma, Italia</Popup>
+        <Popup>Milano, Italia</Popup>
       </Marker>
     </MapContainer>
   );
