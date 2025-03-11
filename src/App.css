@@ -65,3 +65,10 @@ html {
   border: none;
   color: #503279;
 }
+.module3d-container {
+  background-image: url("./assets/img.svg");
+  background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
+  padding: 20px;
+}
