@@ -85,3 +85,7 @@ html {
   cursor: pointer;
   color: #d6f1dc;
 }
+.cursorID {
+  cursor: pointer;
+  color: #3c018e !important;
+}

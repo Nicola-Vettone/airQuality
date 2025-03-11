@@ -130,7 +130,9 @@ const MQTTClient: React.FC = () => {
               //converto l'oggetto in array per poi mapparlo
               ([deviceId, msg]) => (
                 <tr className="text-center" key={deviceId}>
-                  <td onClick={() => handleDeviceClick(deviceId)}>{deviceId}</td>
+                  <td className="cursorID" onClick={() => handleDeviceClick(deviceId)}>
+                    {deviceId}
+                  </td>
                   <td>🟢</td>
                   <td>{msg.temperature}°</td>
                   <td>{msg.humidity}%</td>
