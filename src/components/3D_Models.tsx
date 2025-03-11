@@ -1,14 +1,14 @@
 import { Container } from "react-bootstrap";
 import NavBar from "./NavBar";
-import Tools from "./Tools";
 import ModelCards from "./Card3D";
+import SearchBar from "./SearchBar";
 
 function Module3D() {
   return (
-    <Container fluid className="backGroundColor p-0 ">
+    <Container fluid className=" p-0 ">
       <Container fluid className="module3d-container">
         <NavBar />
-        <Tools />
+        <SearchBar />
       </Container>
       <ModelCards />
     </Container>

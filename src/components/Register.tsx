@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Container, Col, Form, Button, InputGroup } from "react-bootstrap";
+import { Eye } from "react-bootstrap-icons";
 import { Link } from "react-router";
 
 const Register: React.FC = () => {
@@ -57,6 +58,7 @@ const Register: React.FC = () => {
                 required
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <Eye className="cursor-pointer" style={{ position: "absolute", top: "10px", left: "92%" }} size={20} />
             </InputGroup>
           </Form.Group>
           <Form.Group controlId="password" className="mt-3 ">
@@ -69,6 +71,7 @@ const Register: React.FC = () => {
                 required
                 onChange={(e) => setConfermaPass(e.target.value)}
               />
+              <Eye className="cursor-pointer" style={{ position: "absolute", top: "10px", left: "92%" }} size={20} />
             </InputGroup>
           </Form.Group>
 
@@ -88,9 +91,9 @@ const Register: React.FC = () => {
         </Form>
         <div className="d-flex justify-content-end">
           <button type="submit" className="text-white mt-3 buttonSalta rounded-pill px-5 py-1">
-          <Link to="/3Dmodels" className="text-color">
-            Salta
-          </Link>
+            <Link to="/3Dmodels" className="text-white buttonSalta">
+              Salta
+            </Link>
           </button>
         </div>
       </Col>

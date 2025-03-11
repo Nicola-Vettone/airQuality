@@ -13,7 +13,7 @@
 .buttonSalta {
   background-color: #6a528c;
   border: none;
-  box-shadow: inset 2px 10px 5px -9px rgba(0, 0, 0, 0.57);
+  text-decoration: none;
 }
 
 .backImg {
@@ -76,4 +76,12 @@ html {
   background-position: top;
   background-attachment: fixed;
   padding: 20px;
+}
+.iconColor {
+  color: #8641e8;
+  font-size: 25px;
+}
+.cursor-pointer {
+  cursor: pointer;
+  color: #d6f1dc;
 }

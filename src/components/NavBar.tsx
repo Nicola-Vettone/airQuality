@@ -23,7 +23,7 @@ function NavBar() {
             <Nav.Link className="fontNavbar" href="/3Dmodels">
               3D models
             </Nav.Link>
-            <Nav.Link className="fontNavbar" href="#link">
+            <Nav.Link className="fontNavbar" href="/mqtt">
               Air Quality
             </Nav.Link>
           </Nav>

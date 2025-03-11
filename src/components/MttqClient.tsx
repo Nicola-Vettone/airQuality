@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import mqtt, { MqttClient } from "mqtt";
+import moment from "moment-timezone";
+moment.tz.setDefault("Europe/Rome");
+moment.locale("it");
 
-import { oggi } from "../configurations/timeConfig";
 import { Container, Table } from "react-bootstrap";
 import NavBar from "./NavBar";
 import MapComponent from "./Maps";
@@ -22,6 +24,12 @@ const topic = "Synapsy/AirQuality/+"; //inserisco il topic in una variabile
 
 const MQTTClient: React.FC = () => {
   // Stato per memorizzare l'ultimo messaggio ricevuto per ogni dispositivo
+
+  const [oggi, setOggi] = useState(() => {
+    const storedOggi = localStorage.getItem("oggi");
+    return storedOggi ? storedOggi : moment().calendar();
+  });
+
   const [messages, setMessages] = useState<MQTTMessages>(() => {
     const storedData = localStorage.getItem("mqttMessages"); // salvo i dati nel localStorage così non mi causa errore e avrò sempre gli ultimi dati prima dell'aggiornamento
     return storedData ? JSON.parse(storedData) : {};
@@ -30,6 +38,12 @@ const MQTTClient: React.FC = () => {
   useEffect(() => {
     localStorage.setItem("mqttMessages", JSON.stringify(messages));
   }, [messages]); //al comporsi del componente lo inizializza con i dati salvati e poi cambiano all'aggiornarsi di message
+
+  useEffect(() => {
+    const newOggi = moment().calendar();
+    setOggi(newOggi);
+    localStorage.setItem("oggi", newOggi); // Salva nel localStorage
+  }, [messages]); // Si aggiorna ogni volta che cambia messages
 
   let client: MqttClient | null = null; // Variabile per il client MQTT
 
@@ -63,7 +77,7 @@ const MQTTClient: React.FC = () => {
     // Quando riceviamo un messaggio, lo leggiamo e aggiorniamo lo stato
     client.on("message", (topic: string, message: Buffer) => {
       const topicParts = topic.split("/");
-      const deviceId = topicParts[2];
+      const deviceId = topicParts[2]; //prende il deviceId che è presente dopo il secondo /
       console.log(`Messaggio ricevuto su ${deviceId}:`, message.toString());
 
       try {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Container, Col, Form, InputGroup, Button } from "react-bootstrap";
+import { EmojiSmile, Eye } from "react-bootstrap-icons";
 import { Link } from "react-router";
 
 const Login: React.FC = () => {
@@ -24,7 +25,7 @@ const Login: React.FC = () => {
       {/* Sezione Form */}
       <Col md={6} className="w-25 ">
         <h2>
-          Ciao! <br /> Bentornato!
+          Ciao! <br /> Bentornato! <EmojiSmile className="iconColor" />
         </h2>
 
         <Form onSubmit={handleSubmit} className="mt-4 ">
@@ -45,11 +46,13 @@ const Login: React.FC = () => {
             <InputGroup>
               <Form.Control
                 className="rounded-pill"
+                type="password"
                 required
                 placeholder="Inserisci la password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <Eye className="cursor-pointer" style={{ position: "absolute", top: "10px", left: "92%" }} size={20} />
             </InputGroup>
           </Form.Group>
 
