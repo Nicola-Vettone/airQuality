@@ -22,7 +22,14 @@ const topic = "Synapsy/AirQuality/+"; //inserisco il topic in una variabile
 
 const MQTTClient: React.FC = () => {
   // Stato per memorizzare l'ultimo messaggio ricevuto per ogni dispositivo
-  const [messages, setMessages] = useState<MQTTMessages>({});
+  const [messages, setMessages] = useState<MQTTMessages>(() => {
+    const storedData = localStorage.getItem("mqttMessages"); // salvo i dati nel localStorage così non mi causa errore e avrò sempre gli ultimi dati prima dell'aggiornamento
+    return storedData ? JSON.parse(storedData) : {};
+  });
+
+  useEffect(() => {
+    localStorage.setItem("mqttMessages", JSON.stringify(messages));
+  }, [messages]); //al comporsi del componente lo inizializza con i dati salvati e poi cambiano all'aggiornarsi di message
 
   let client: MqttClient | null = null; // Variabile per il client MQTT
 
@@ -98,7 +105,7 @@ const MQTTClient: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {Object.entries(messages).map(
+            {Object.entries(messages || {}).map(
               //converto l'oggetto in array per poi mapparlo
               ([deviceId, msg]) => (
                 <tr className="text-center" key={deviceId}>
