@@ -8,6 +8,7 @@ import MQTTClient from "./components/MttqClient";
 import Module3D from "./components/3D_Models";
 import GraficiMqtt from "./components/Grafici";
 import Tools from "./components/Tools";
+import App3D from "./components/App3D";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/3Dmodels" element={<Module3D />} />
         <Route path="/grafici" element={<GraficiMqtt />} />
         <Route path="/tools" element={<Tools />} />
+        <Route path="/cube3D" element={<App3D />} />
         <Route
           path="*"
           element={
