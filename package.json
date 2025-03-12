@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/fiber": "^9.1.0",
+    "@types/three": "^0.174.0",
     "bootstrap": "^5.3.3",
     "echart": "^0.1.3",
     "echarts-for-react": "^3.0.3",
@@ -23,7 +25,8 @@
     "react-dom": "^19.0.0",
     "react-leaflet": "^5.0.0",
     "react-redux": "^9.2.0",
-    "react-router": "^7.3.0"
+    "react-router": "^7.3.0",
+    "three": "^0.174.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

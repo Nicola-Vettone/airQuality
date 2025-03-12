@@ -6,7 +6,7 @@ import mqtt, { MqttClient } from "mqtt";
 import { EChartsOption } from "echarts";
 
 import NavBar from "./NavBar";
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 
 // Interfaccia per tipizzare i dati ricevuti dal messaggio MQTT
 interface Payload {
@@ -40,34 +40,6 @@ const GraficiMqtt: React.FC = () => {
       console.warn("DeviceId non trovato nei parametri dell'URL");
     }
   }, []);
-
-  // Opzioni per il grafico del livello di rumore
-  const noiseChartOption: EChartsOption = {
-    tooltip: {
-      formatter: "{a} <br/>{b} : {c} dB", // Mostra il valore in decibel
-    },
-    series: [
-      {
-        name: "Noise Level",
-        type: "gauge",
-        progress: {
-          show: true,
-        },
-        detail: {
-          valueAnimation: true,
-          formatter: "{value} dB",
-        },
-        data: [
-          {
-            value: noiseLevel[noiseLevel.length - 1] || 0, // Ultimo valore dell' array oppure 0 altrimenti compare NaN dB
-            name: "SCORE",
-          },
-        ],
-        min: 30, // Min
-        max: 120, // Max
-      },
-    ],
-  };
 
   useEffect(() => {
     // Se non c'è un deviceId, non connettersi
@@ -131,35 +103,67 @@ const GraficiMqtt: React.FC = () => {
     series: [{ data, type: "line", smooth: true, lineStyle: { color } }],
   });
 
+  // Opzioni per il grafico del livello di rumore
+  const noiseChartOption: EChartsOption = {
+    tooltip: {
+      formatter: "{a} <br/>{b} : {c} dB", // Mostra il valore in decibel
+    },
+    series: [
+      {
+        name: "Noise Level",
+        type: "gauge",
+        progress: {
+          show: true,
+        },
+        detail: {
+          valueAnimation: true,
+          formatter: "{value}",
+        },
+        data: [
+          {
+            value: noiseLevel[noiseLevel.length - 1] || 0, // Ultimo valore dell' array oppure 0 altrimenti compare NaN dB
+            name: "Db",
+          },
+        ],
+        min: 30, // Min
+        max: 120, // Max
+      },
+    ],
+  };
   return (
     <Container fluid className="backGroundColorGrafici">
       <NavBar />
       {deviceId ? (
-        // Mostra i grafici se c'è un deviceId
-        <Container style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
-          <h2 style={{ gridColumn: "1 / span 2", textAlign: "left" }}>
+        <Container>
+          <h2 className="text-left">
             <strong>ID</strong> {deviceId}
           </h2>
-          {/* Grafico per PM2.5 */}
-          <ReactECharts className="bg-light  rounded-5" option={getChartOption("PM 2.5", dataPM2_5, "red")} />
-          {/* Grafico per PM10 */}
-          <ReactECharts className="bg-light  rounded-5" option={getChartOption("PM 10", dataPM10, "green")} />
-          {/* Grafico per Umidità */}
-          <ReactECharts className="bg-light  rounded-5" option={getChartOption("Umidità", dataHumidity, "purple")} />
-          {/* Grafico per Temperatura */}
-          <ReactECharts
-            className="bg-light  rounded-5"
-            option={getChartOption("Temperatura", dataTemperature, "orange")}
-          />
-
-          {/* Grafico per Livello di Rumore */}
-          <div className="text-center">
-            <h5>Noise Level</h5>
-            <ReactECharts option={noiseChartOption} />
-          </div>
+          <Row className="gy-4">
+            <Col md={6}>
+              <ReactECharts className="bg-light rounded-5 p-2" option={getChartOption("PM 2.5", dataPM2_5, "red")} />
+            </Col>
+            <Col md={6}>
+              <ReactECharts className="bg-light rounded-5 p-2" option={getChartOption("PM 10", dataPM10, "green")} />
+            </Col>
+            <Col md={6}>
+              <ReactECharts
+                className="bg-light rounded-5 p-2"
+                option={getChartOption("Umidità", dataHumidity, "purple")}
+              />
+            </Col>
+            <Col md={6}>
+              <ReactECharts
+                className="bg-light rounded-5 p-2"
+                option={getChartOption("Temperatura", dataTemperature, "orange")}
+              />
+            </Col>
+            <Col md={12} className="text-center">
+              <h3>Noise Level</h3>
+              <ReactECharts className="bg-light rounded-5 p-2" option={noiseChartOption} />
+            </Col>
+          </Row>
         </Container>
       ) : (
-        // Mostra un messaggio se non c'è un deviceId
         <div className="text-center">
           <p>Nessun dispositivo selezionato!</p>
         </div>
