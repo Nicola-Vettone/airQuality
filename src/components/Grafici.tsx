@@ -5,6 +5,9 @@ import mqtt, { MqttClient } from "mqtt";
 // Importa i tipi da echarts per una tipizzazione corretta
 import { EChartsOption } from "echarts";
 
+import NavBar from "./NavBar";
+import { Container } from "react-bootstrap";
+
 // Interfaccia per tipizzare i dati ricevuti dal messaggio MQTT
 interface Payload {
   pm2_5: number;
@@ -112,21 +115,27 @@ const GraficiMqtt: React.FC = () => {
   });
 
   return (
-    <div>
+    <Container fluid className="backGroundColor">
+      <NavBar />
       {deviceId ? (
         // Mostra i grafici se c'è un deviceId
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
-          <h2 style={{ gridColumn: "1 / span 2", textAlign: "center" }}>Dati del dispositivo: {deviceId}</h2>
+          <h2 style={{ gridColumn: "1 / span 2", textAlign: "left" }}>
+            <strong>ID</strong> {deviceId}
+          </h2>
           {/* Grafico per PM2.5 */}
-          <ReactECharts option={getChartOption("PM 2.5", dataPM2_5, "red")} />
+          <ReactECharts className="bg-light  rounded-5" option={getChartOption("PM 2.5", dataPM2_5, "red")} />
           {/* Grafico per PM10 */}
-          <ReactECharts option={getChartOption("PM 10", dataPM10, "green")} />
+          <ReactECharts className="bg-light  rounded-5" option={getChartOption("PM 10", dataPM10, "green")} />
           {/* Grafico per Umidità */}
-          <ReactECharts option={getChartOption("Umidità", dataHumidity, "purple")} />
+          <ReactECharts className="bg-light  rounded-5" option={getChartOption("Umidità", dataHumidity, "purple")} />
           {/* Grafico per Temperatura */}
-          <ReactECharts option={getChartOption("Temperatura", dataTemperature, "orange")} />
+          <ReactECharts
+            className="bg-light  rounded-5"
+            option={getChartOption("Temperatura", dataTemperature, "orange")}
+          />
           {/* Grafico per Livello di Rumore */}
-          <ReactECharts option={noiseChartOption} />
+          <ReactECharts className="bg-light  rounded-5" option={noiseChartOption} />
         </div>
       ) : (
         // Mostra un messaggio se non c'è un deviceId
@@ -134,7 +143,7 @@ const GraficiMqtt: React.FC = () => {
           <p>Nessun dispositivo selezionato!</p>
         </div>
       )}
-    </div>
+    </Container>
   );
 };
 
