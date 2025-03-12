@@ -115,7 +115,7 @@ const GraficiMqtt: React.FC = () => {
   });
 
   return (
-    <Container fluid className="backGroundColor">
+    <Container fluid className="backGroundColorGrafici">
       <NavBar />
       {deviceId ? (
         // Mostra i grafici se c'è un deviceId

@@ -54,6 +54,10 @@
 .backGroundColor {
   background-color: #d6f1dc;
 }
+.backGroundColorGrafici {
+  background: rgb(214, 241, 220);
+  background: linear-gradient(183deg, rgba(214, 241, 220, 1) 42%, rgba(255, 255, 255, 1) 48%);
+}
 html {
   background-color: #d6f1dc;
 }
