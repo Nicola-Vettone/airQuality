@@ -89,6 +89,10 @@
   cursor: pointer;
   color: #d6f1dc;
 }
+.cursor-pointer-download {
+  cursor: pointer;
+  color: #3c018e;
+}
 .cursorID {
   cursor: pointer;
   color: #3c018e !important;

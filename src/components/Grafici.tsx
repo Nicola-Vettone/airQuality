@@ -24,7 +24,7 @@ const GraficiMqtt: React.FC = () => {
   const [dataHumidity, setDataHumidity] = useState<number[]>([]);
   const [dataTemperature, setDataTemperature] = useState<number[]>([]);
   const [noiseLevel, setNoiseLevel] = useState<number[]>([]);
-
+  console.log(noiseLevel);
   // Ottieni deviceId dai parametri dell'URL
   const [deviceId, setDeviceId] = useState<string>("");
 
@@ -43,13 +43,30 @@ const GraficiMqtt: React.FC = () => {
 
   // Opzioni per il grafico del livello di rumore
   const noiseChartOption: EChartsOption = {
-    title: { text: "Noise Level", left: "center" },
-    xAxis: {
-      type: "category", // Tipo di asse specificato come "category"
-      data: Array.from({ length: noiseLevel.length }, (_, i) => i),
+    tooltip: {
+      formatter: "{a} <br/>{b} : {c} dB", // Mostra il valore in decibel
     },
-    yAxis: { type: "value", min: 30, max: 120 },
-    series: [{ data: noiseLevel, type: "bar", color: "green" }],
+    series: [
+      {
+        name: "Noise Level",
+        type: "gauge",
+        progress: {
+          show: true,
+        },
+        detail: {
+          valueAnimation: true,
+          formatter: "{value} dB",
+        },
+        data: [
+          {
+            value: noiseLevel[noiseLevel.length - 1] || 0, // Ultimo valore della serie oppure 0 altrimenti compare NaN dB
+            name: "SCORE",
+          },
+        ],
+        min: 30, // Min
+        max: 120, // Max
+      },
+    ],
   };
 
   useEffect(() => {
@@ -84,7 +101,7 @@ const GraficiMqtt: React.FC = () => {
         // Parsing dei dati dal messaggio MQTT
         const payload: Payload = JSON.parse(message.toString());
 
-        // Aggiornamento degli stati con i nuovi dati (limitato agli ultimi 20/30 valori)
+        // Aggiornamento degli stati con i nuovi dati (limitato agli ultimi 20/30(per il noise) valori)
         setDataPM2_5((prev) => [...prev.slice(-20), payload.pm2_5]);
         setDataPM10((prev) => [...prev.slice(-20), payload.pm10]);
         setDataHumidity((prev) => [...prev.slice(-20), payload.humidity]);
@@ -135,11 +152,11 @@ const GraficiMqtt: React.FC = () => {
             option={getChartOption("Temperatura", dataTemperature, "orange")}
           />
           {/* Grafico per Livello di Rumore */}
-          <ReactECharts className="bg-light  rounded-5" option={noiseChartOption} />
+          <ReactECharts option={noiseChartOption} />
         </div>
       ) : (
         // Mostra un messaggio se non c'è un deviceId
-        <div style={{ textAlign: "center", padding: "20px" }}>
+        <div className="text-center">
           <p>Nessun dispositivo selezionato!</p>
         </div>
       )}
