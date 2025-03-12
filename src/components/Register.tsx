@@ -27,7 +27,7 @@ const Register: React.FC = () => {
       {/* Sezione Form */}
       <Col md={6} className="w-25 ">
         <h2>
-          Ciao! <br /> Bentornato,registrati! <EmojiSmile className="iconColor" />
+          Benvenuto,registrati! <EmojiSmile className="iconColor" />
         </h2>
 
         <Form onSubmit={handleSubmit} className="mt-4 ">

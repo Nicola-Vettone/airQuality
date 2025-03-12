@@ -101,3 +101,6 @@
 .custom-link:hover {
   color: green !important;
 }
+.popup {
+  font-size: 20px;
+}

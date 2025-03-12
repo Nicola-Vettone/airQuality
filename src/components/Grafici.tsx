@@ -130,6 +130,7 @@ const GraficiMqtt: React.FC = () => {
       },
     ],
   };
+
   return (
     <Container fluid className="backGroundColorGrafici">
       <NavBar />
