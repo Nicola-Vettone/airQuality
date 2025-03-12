@@ -59,7 +59,7 @@ const GraficiMqtt: React.FC = () => {
         },
         data: [
           {
-            value: noiseLevel[noiseLevel.length - 1] || 0, // Ultimo valore della serie oppure 0 altrimenti compare NaN dB
+            value: noiseLevel[noiseLevel.length - 1] || 0, // Ultimo valore dell' array oppure 0 altrimenti compare NaN dB
             name: "SCORE",
           },
         ],
