@@ -80,7 +80,7 @@ const Login: React.FC = () => {
 
         <p className="text-center mt-3">
           Non hai l’account?
-          <Link to="/register" className="text-color">
+          <Link to="/register" className="text-color custom-link">
             Iscriviti ora
           </Link>
         </p>
