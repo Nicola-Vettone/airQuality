@@ -136,7 +136,7 @@ const GraficiMqtt: React.FC = () => {
       <NavBar />
       {deviceId ? (
         // Mostra i grafici se c'è un deviceId
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+        <Container style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
           <h2 style={{ gridColumn: "1 / span 2", textAlign: "left" }}>
             <strong>ID</strong> {deviceId}
           </h2>
@@ -151,9 +151,13 @@ const GraficiMqtt: React.FC = () => {
             className="bg-light  rounded-5"
             option={getChartOption("Temperatura", dataTemperature, "orange")}
           />
+
           {/* Grafico per Livello di Rumore */}
-          <ReactECharts option={noiseChartOption} />
-        </div>
+          <div className="text-center">
+            <h5>Noise Level</h5>
+            <ReactECharts option={noiseChartOption} />
+          </div>
+        </Container>
       ) : (
         // Mostra un messaggio se non c'è un deviceId
         <div className="text-center">
