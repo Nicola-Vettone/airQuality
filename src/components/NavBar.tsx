@@ -17,7 +17,7 @@ function NavBar() {
             <Nav.Link className="fontNavbar" href="#home">
               Home
             </Nav.Link>
-            <Nav.Link className="fontNavbar" href="#link">
+            <Nav.Link className="fontNavbar" href="/tools">
               Tools
             </Nav.Link>
             <Nav.Link className="fontNavbar" href="/3Dmodels">
