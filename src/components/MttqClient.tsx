@@ -1,91 +1,81 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import mqtt, { MqttClient } from "mqtt";
 import moment from "moment-timezone";
-moment.tz.setDefault("Europe/Rome");
-moment.locale("it");
-
-import { Container, Table } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import NavBar from "./NavBar";
 import MapComponent from "./Maps";
 import { useNavigate } from "react-router";
+import { AgGridReact } from "ag-grid-react";
+import { ColDef, ICellRendererParams, ValueFormatterParams, ModuleRegistry } from "ag-grid-community";
+import { ClientSideRowModelModule } from "ag-grid-community";
 
-// Tipo TypeScript per i dati che riceveremo dai messaggi MQTT
-type MQTTMessageItem = {
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
+
+// Registra il modulo necessario per AG Grid
+ModuleRegistry.registerModules([ClientSideRowModelModule]);
+
+// Definizione del tipo per i dati ricevuti da MQTT
+interface MQTTMessageItem {
   temperature: string;
   humidity: string;
   pm10: string;
   pm2_5: string;
   noise: string;
-};
+}
 
-// utilizzo un oggetto invece di un array
+// Struttura dei messaggi con chiave deviceId
 type MQTTMessages = Record<string, MQTTMessageItem>;
 
-const topic = "Synapsy/AirQuality/+"; //inserisco il topic in una variabile
-
 const MQTTClient: React.FC = () => {
-  // Stato per memorizzare l'ultimo messaggio ricevuto per ogni dispositivo
   const navigate = useNavigate();
-  const [oggi, setOggi] = useState(() => {
-    const storedOggi = localStorage.getItem("oggi");
-    return storedOggi ? storedOggi : moment().calendar();
-  });
+
+  const [oggi, setOggi] = useState<string>(() => localStorage.getItem("oggi") || moment().calendar());
 
   const [messages, setMessages] = useState<MQTTMessages>(() => {
-    const storedData = localStorage.getItem("mqttMessages"); // salvo i dati nel localStorage così non mi causa errore e avrò sempre gli ultimi dati prima dell'aggiornamento
+    const storedData = localStorage.getItem("mqttMessages");
     return storedData ? JSON.parse(storedData) : {};
   });
 
   useEffect(() => {
     localStorage.setItem("mqttMessages", JSON.stringify(messages));
-  }, [messages]); //al comporsi del componente lo inizializza con i dati salvati e poi cambiano all'aggiornarsi di message
+  }, [messages]);
 
   useEffect(() => {
     const newOggi = moment().calendar();
     setOggi(newOggi);
-    localStorage.setItem("oggi", newOggi); // Salva nel localStorage
-  }, [messages]); // Si aggiorna ogni volta che cambia messages
+    localStorage.setItem("oggi", newOggi);
+  }, [messages]);
 
-  let client: MqttClient | null = null; // Variabile per il client MQTT
+  let client: MqttClient | null = null;
 
   useEffect(() => {
-    const brokerUrl: string = "wss://nexustlc.ddns.net:443/mqtt"; // URL del broker MQTT (WebSocket Secure)
+    const brokerUrl: string = "wss://nexustlc.ddns.net:443/mqtt";
 
-    // Connessione al broker MQTT
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     client = mqtt.connect(brokerUrl, {
-      //Credenziali per la mqtt client, senza non possono essere visualizzati i dati
       username: "ProgettoAirQualityClient",
       password: "1d87914de3fdd3b778a45ce3fdff3c6c",
     });
 
-    // Quando la connessione è attiva, ci iscriviamo al topic
     client.on("connect", () => {
       console.log("Connesso al broker MQTT");
-      client?.subscribe(topic, (err) => {
+      client?.subscribe("Synapsy/AirQuality/+", (err) => {
         if (!err) {
-          console.log("Sottoscritto al topic: " + topic);
+          console.log("Sottoscritto al topic");
         } else {
           console.error("Errore nella sottoscrizione:", err);
         }
       });
     });
 
-    client.on("error", (error) => {
-      console.error("Errore nella connessione al broker MQTT:", error);
-    });
-
-    // Quando riceviamo un messaggio, lo leggiamo e aggiorniamo lo stato
     client.on("message", (topic: string, message: Buffer) => {
       const topicParts = topic.split("/");
-      const deviceId = topicParts[2]; //prende il deviceId che è presente dopo il secondo /
-      console.log(`Messaggio ricevuto su ${deviceId}:`, message.toString());
+      const deviceId = topicParts[2];
 
       try {
-        // Convertire il messaggio da stringa JSON a oggetto TypeScript
         const parsedMessage: MQTTMessageItem = JSON.parse(message.toString());
 
-        // Sovrascriviamo il messaggio precedente per questo dispositivo
         setMessages((prev) => ({
           ...prev,
           [deviceId]: parsedMessage,
@@ -95,54 +85,74 @@ const MQTTClient: React.FC = () => {
       }
     });
 
-    // Quando il componente viene smontato, chiudiamo la connessione MQTT
     return () => {
       if (client) {
         client.end();
         console.log("Connessione MQTT chiusa");
       }
     };
-  }, []); // si esegue solo una volta
+  }, []);
 
-  // Funzione per gestire il click sull'ID del dispositivo
   const handleDeviceClick = (deviceId: string) => {
-    // Naviga alla pagina dei grafici con il deviceId come parametro URL
     navigate(`/grafici?deviceId=${deviceId}`);
   };
 
+  // Definizione delle colonne
+  const columnDefs: ColDef[] = [
+    {
+      headerName: "#ID",
+      field: "deviceId",
+      cellRenderer: (params: ICellRendererParams) => (
+        <span className="cursorID" onClick={() => handleDeviceClick(params.value)}>
+          {params.value}
+        </span>
+      ),
+    },
+    {
+      headerName: "Status",
+      field: "status",
+      valueFormatter: () => "🟢",
+    },
+    {
+      headerName: "Temperatura",
+      field: "temperature",
+      valueFormatter: (params: ValueFormatterParams) => `${params.value}°`,
+    },
+    {
+      headerName: "Umidità",
+      field: "humidity",
+      valueFormatter: (params: ValueFormatterParams) => `${params.value}%`,
+    },
+    {
+      headerName: "Installed On",
+      field: "installedOn",
+      valueFormatter: () => "17/12/24",
+    },
+    {
+      headerName: "Last Transmission",
+      field: "lastTransmission",
+      valueFormatter: () => oggi,
+    },
+  ];
+  //trasforma i messaggi ricevuti via MQTT  per essere visualizzato nella tabella
+  const rowData = Object.entries(messages).map(([deviceId, msg]) => ({
+    deviceId,
+    ...msg,
+  }));
+
   return (
-    <Container fluid className="backGroundColor ">
+    <Container fluid className="backGroundColor">
       <NavBar />
-      <div className="mt-4">
-        <Table>
-          <thead>
-            <tr className="text-center">
-              <th>#ID</th>
-              <th>Status</th>
-              <th>Temperatura</th>
-              <th>Umidità</th>
-              <th>Installed On</th>
-              <th>Last Transmission</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.entries(messages || {}).map(
-              //converto l'oggetto in array per poi mapparlo
-              ([deviceId, msg]) => (
-                <tr className="text-center" key={deviceId}>
-                  <td className="cursorID" onClick={() => handleDeviceClick(deviceId)}>
-                    {deviceId}
-                  </td>
-                  <td>🟢</td>
-                  <td>{msg.temperature}°</td>
-                  <td>{msg.humidity}%</td>
-                  <td>17/12/24</td>
-                  <td>{oggi}</td>
-                </tr>
-              )
-            )}
-          </tbody>
-        </Table>
+      <div className="ag-theme-alpine mb-2" style={{ height: 300, width: "100%" }}>
+        <AgGridReact //tabella
+          rowData={rowData} // dati dell'array
+          columnDefs={columnDefs} //colonne
+          // Proprietà per far estendere le colonne
+          defaultColDef={{
+            flex: 1,
+            resizable: true,
+          }}
+        />
       </div>
       <MapComponent />
     </Container>

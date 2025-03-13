@@ -53,9 +53,9 @@ const GraficiMqtt: React.FC = () => {
 
     // Quando la connessione è stabilita
     client.on("connect", () => {
-      console.log("Connesso a MQTT");
+      console.log("Connesso a MQTT", client.connected);
       // Sottoscrivi solo al topic specifico per il deviceId dall'URL
-      const topicToSubscribe = `Synapsy/AirQuality/${deviceId}`;
+      const topicToSubscribe = `Synapsy/AirQuality/${deviceId}`; //con + li da i dati,CONTROLLA!
       client.subscribe(topicToSubscribe);
       console.log(`Sottoscritto al topic: ${topicToSubscribe}`);
 
@@ -69,6 +69,7 @@ const GraficiMqtt: React.FC = () => {
 
     // Quando un messaggio viene ricevuto
     client.on("message", (topic: string, message: Buffer) => {
+      console.log(`Messaggio ricevuto su ${deviceId}:`, message.toString());
       try {
         // Parsing dei dati dal messaggio MQTT
         const payload: Payload = JSON.parse(message.toString());

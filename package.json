@@ -13,6 +13,8 @@
     "@react-three/drei": "^9.0.1",
     "@react-three/fiber": "^9.1.0",
     "@types/three": "^0.174.0",
+    "ag-grid-community": "^33.1.1",
+    "ag-grid-react": "^33.1.1",
     "bootstrap": "^5.3.3",
     "echart": "^0.1.3",
     "echarts-for-react": "^3.0.3",
