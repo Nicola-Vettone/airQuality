@@ -104,3 +104,12 @@
 .popup {
   font-size: 20px;
 }
+
+.ag-theme-alpine {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.ag-cell {
+  border-radius: 5px;
+}

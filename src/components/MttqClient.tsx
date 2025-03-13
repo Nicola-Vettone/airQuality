@@ -144,7 +144,7 @@ const MQTTClient: React.FC = () => {
   return (
     <Container fluid className="backGroundColor">
       <NavBar />
-      <div className="ag-theme-alpine mb-2" style={{ height: 300, width: "100%" }}>
+      <div className="ag-theme-alpine mb-2 " style={{ height: 300, width: "100%" }}>
         <AgGridReact //tabella
           rowData={rowData} // dati dell'array
           columnDefs={columnDefs} //colonne

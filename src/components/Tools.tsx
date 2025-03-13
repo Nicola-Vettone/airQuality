@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 import NavBar from "./NavBar";
 import SearchBar from "./SearchBar";
 import { Download } from "react-bootstrap-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Tools() {
   // Definiamo il tipo per i file caricati
@@ -13,11 +13,29 @@ function Tools() {
   // Inizializziamo uno stato per gestire i file caricati
   const [files, setFiles] = useState<UploadedFile[]>([]);
 
-  // Questa funzione gestisce il caricamento dei file e li aggiunge allo stato
+  // Carica i file dal localStorage all'avvio dell'app
+  useEffect(() => {
+    const savedFiles = localStorage.getItem("uploadedFiles");
+    if (savedFiles) {
+      setFiles(JSON.parse(savedFiles)); // Impostiamo i file salvati nel localStorage come stato
+    }
+  }, []);
+
+  // Funzione per gestire il caricamento dei file
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
-    const uploadedFiles: UploadedFile[] = Array.from(event.target.files).map((file) => ({ name: file.name, file }));
-    setFiles((prevFiles: UploadedFile[]) => [...prevFiles, ...uploadedFiles]);
+
+    const uploadedFiles: UploadedFile[] = Array.from(event.target.files).map((file) => ({
+      name: file.name,
+      file,
+    }));
+
+    // Aggiungiamo i nuovi file e aggiorniamo lo stato e il localStorage
+    setFiles((prevFiles: UploadedFile[]) => {
+      const newFiles = [...prevFiles, ...uploadedFiles];
+      localStorage.setItem("uploadedFiles", JSON.stringify(newFiles)); // Salviamo i file nel localStorage
+      return newFiles;
+    });
   };
   return (
     <Container fluid className="p-0">

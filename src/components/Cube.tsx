@@ -5,7 +5,7 @@ import { Mesh } from "three";
 function Cube(): JSX.Element {
   const meshRef = useRef<Mesh>(null!);
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     meshRef.current.rotation.x += delta;
     meshRef.current.rotation.y += delta;
   });
