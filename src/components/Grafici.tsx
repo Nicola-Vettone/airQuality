@@ -47,8 +47,8 @@ const GraficiMqtt: React.FC = () => {
 
     // Connessione al broker MQTT
     const client: MqttClient = mqtt.connect("wss://nexustlc.ddns.net:443/mqtt", {
-      username: "ProgettoAirQualityClient", // username per l'autenticazione
-      password: "1d87914de3fdd3b778a45ce3fdff3c6c", // password per l'autenticazione
+      username: "ProgettoAirQualityClient",
+      password: "1d87914de3fdd3b778a45ce3fdff3c6c",
     });
 
     // Quando la connessione è stabilita

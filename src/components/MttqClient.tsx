@@ -37,7 +37,7 @@ const MQTTClient: React.FC = () => {
     const storedData = localStorage.getItem("mqttMessages");
     return storedData ? JSON.parse(storedData) : {};
   });
-
+  //use effect con i dati inseriti nel localStorage che appaiono in tabella al primo render
   useEffect(() => {
     localStorage.setItem("mqttMessages", JSON.stringify(messages));
   }, [messages]);
@@ -49,7 +49,7 @@ const MQTTClient: React.FC = () => {
   }, [messages]);
 
   let client: MqttClient | null = null;
-
+  //useEffect che esegue la connessione a MQTT e aggiorna i dati
   useEffect(() => {
     const brokerUrl: string = "wss://nexustlc.ddns.net:443/mqtt";
 
@@ -75,7 +75,7 @@ const MQTTClient: React.FC = () => {
 
       try {
         const parsedMessage: MQTTMessageItem = JSON.parse(message.toString());
-
+        console.log(parsedMessage);
         setMessages((prev) => ({
           ...prev,
           [deviceId]: parsedMessage,
@@ -95,6 +95,7 @@ const MQTTClient: React.FC = () => {
 
   const handleDeviceClick = (deviceId: string) => {
     navigate(`/grafici?deviceId=${deviceId}`);
+    console.log(deviceId);
   };
 
   // Definizione delle colonne
