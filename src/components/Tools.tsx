@@ -51,7 +51,6 @@ function Tools() {
           </p>
         ))}
         <div className="d-flex justify-content-end w-100">
-          {/* Nascondiamo il campo di input file e lo colleghiamo a un'etichetta per migliorare l'interfaccia utente */}
           <input type="file" multiple onChange={handleFileUpload} className="d-none" id="fileInput" />
           <label
             htmlFor="fileInput"

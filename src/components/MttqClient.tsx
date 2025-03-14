@@ -10,8 +10,8 @@ import { AgGridReact } from "ag-grid-react";
 import { ColDef, ICellRendererParams, ValueFormatterParams, ModuleRegistry } from "ag-grid-community";
 import { ClientSideRowModelModule } from "ag-grid-community";
 
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
+/* import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css"; */
 
 // Registra il modulo necessario per AG Grid
 ModuleRegistry.registerModules([ClientSideRowModelModule]);

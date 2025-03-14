@@ -28,7 +28,6 @@ function NavBar() {
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
-
         <div className="d-flex align-items-center gap-3">
           <Nav.Link className="LoginNavBar" href="/">
             Login
